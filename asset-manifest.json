@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/sultan/static/css/main.afe62fe3.css",
+    "main.js": "/sultan/static/js/main.93593865.js",
+    "static/media/logo.svg": "/sultan/static/media/logo.6d80ae23382b2f20e48a12930e8ad8a3.svg",
+    "static/media/logoW.svg": "/sultan/static/media/logoW.f9a5379d8fd6b7cee350b59e22e37271.svg",
+    "static/media/master.svg": "/sultan/static/media/master.f69ecfb334822e16da40a171b9906b42.svg",
+    "static/media/watsapp.svg": "/sultan/static/media/watsapp.db4fdea63d5ac10f8039908e900cc30f.svg",
+    "static/media/cart.svg": "/sultan/static/media/cart.5511e0f24aba33a330a5.svg",
+    "static/media/bag.svg": "/sultan/static/media/bag.a4903e92416ec455cdd9ef406eb15a19.svg",
+    "static/media/delete.svg": "/sultan/static/media/delete.44202266d5f12854837e.svg",
+    "static/media/visa.svg": "/sultan/static/media/visa.22acfa0df22f67cb0bcf740fb7ad85fd.svg",
+    "static/media/share.svg": "/sultan/static/media/share.5201f4defbefb503f0cd.svg",
+    "static/media/mail.svg": "/sultan/static/media/mail.3340915fd443967adca6bd4a1fe514ba.svg",
+    "static/media/weigth.svg": "/sultan/static/media/weigth.6d4f0c24c7beafafad3fdd62f4697a44.svg",
+    "static/media/volume.svg": "/sultan/static/media/volume.4dcb2f7b2fce5e4998ce83687d126773.svg",
+    "static/media/telegram.svg": "/sultan/static/media/telegram.20d9f35ae80056e48b6c2e719bac0e5d.svg",
+    "static/media/location.svg": "/sultan/static/media/location.d148b8d8689c3530f152b2dfc5c6dcb9.svg",
+    "static/media/catalog.svg": "/sultan/static/media/catalog.4756189f8fb2f4cdf0b3.svg",
+    "index.html": "/sultan/index.html",
+    "static/media/search.svg": "/sultan/static/media/search.8ccdf0814cd4cac3b494d27af02aeabe.svg",
+    "static/media/downloadB.svg": "/sultan/static/media/downloadB.d1918e2edecc488a113b.svg",
+    "static/media/download.svg": "/sultan/static/media/download.5e96ff0389bda2c46910.svg",
+    "static/media/arrow.svg": "/sultan/static/media/arrow.dc272fb00c0a6f28eaaf6eff166a162b.svg",
+    "static/media/left.svg": "/sultan/static/media/left.8009929457bde0328f8f.svg",
+    "static/media/hhr.svg": "/sultan/static/media/hhr.a135f5e6c32797be3645.svg",
+    "static/media/lowerdash.svg": "/sultan/static/media/lowerdash.9f069b959eafbbcec787.svg",
+    "static/media/right.svg": "/sultan/static/media/right.93ba4abe5846a231d455.svg",
+    "static/media/vhr.svg": "/sultan/static/media/vhr.b48c1fd22db63dc32ed0.svg",
+    "static/media/dash.svg": "/sultan/static/media/dash.ed0a4777c62c154e31b07e7e4280d33d.svg",
+    "main.afe62fe3.css.map": "/sultan/static/css/main.afe62fe3.css.map",
+    "main.93593865.js.map": "/sultan/static/js/main.93593865.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.afe62fe3.css",
+    "static/js/main.93593865.js"
+  ]
+}
