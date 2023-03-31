@@ -1,0 +1,96 @@
+@import '../../variables.scss';
+
+.checkbox {
+	width: fit-content;
+	position: relative;
+	display: flex;
+
+	.inp {
+		width: 100%;
+		height: 18px;
+		position: absolute;
+		left: -5px;
+		z-index: 10;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	.check {
+		cursor: pointer;
+		position: relative;
+		margin: auto;
+		width: 10px;
+		height: 10px;
+		-webkit-tap-highlight-color: transparent;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+
+		svg {
+			position: relative;
+			z-index: 1;
+			fill: none;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			stroke: $color-blue;
+			stroke-width: 1.5;
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+			path {
+				stroke-dasharray: 60;
+				stroke-dashoffset: 0;
+			}
+			polyline {
+				stroke-dasharray: 22;
+				stroke-dashoffset: 66;
+			}
+		}
+		&:hover {
+			&:before {
+				opacity: 1;
+			}
+			svg {
+				stroke: $color-blue;
+			}
+		}
+		margin-right: 10px;
+	}
+	#cbx {
+		&:checked {
+			& + .check {
+				svg {
+					stroke: $color-blue;
+					path {
+						stroke-dashoffset: 60;
+						-webkit-transition: all 0.3s linear;
+						transition: all 0.3s linear;
+					}
+					polyline {
+						stroke-dashoffset: 42;
+						-webkit-transition: all 0.2s linear;
+						transition: all 0.2s linear;
+						-webkit-transition-delay: 0.15s;
+						transition-delay: 0.15s;
+					}
+				}
+			}
+		}
+	}
+
+	.fab {
+		@include font-400;
+		color: $color-blue;
+		margin-right: 5px;
+	}
+
+	.count {
+		@include font-400;
+		font-size: 10px;
+		color: $color-blue;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 5px;
+	}
+}

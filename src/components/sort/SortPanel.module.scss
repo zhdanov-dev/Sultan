@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+.container {
+	display: flex;
+
+	span {
+		@include font-500;
+		font-size: 16px;
+		margin-right: 5px;
+	}
+
+	.sort {
+		@include font-400;
+		font-size: 16px;
+		color: $color-blue;
+	}	
+}

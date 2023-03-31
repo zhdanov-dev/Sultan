@@ -1,0 +1,58 @@
+@import '../../variables.scss';
+
+.container {
+	justify-self: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 61px;
+	width: 1380px;
+}
+
+.leftside {
+	display: flex;
+	align-self: center;
+
+	.dash {
+		margin: 0px 20px 0px 20px;
+	}
+}
+
+.location, .mail {
+	display: flex;
+
+	img {
+		width: 16px;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 18px;
+}
+
+.content__main {
+	@include font-600;
+}
+
+.content__sub {
+	@include font-300;
+	color: $color-blue;
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+
+	.dash {
+		margin: 0px 30px 0px 30px;
+	}
+
+	.navlink {
+		@include font-400;
+		color: $color-blue;
+		line-height: 150%;
+	}
+}

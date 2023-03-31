@@ -1,0 +1,222 @@
+@import '../../variables.scss';
+
+.container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 500px;
+	background-color: $color-blue;
+	margin-top: 100px;
+	align-self: flex-end;
+
+	.footer {
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		width: 1380px;
+		padding-top: 70px;
+
+		.logo {
+			display: flex;
+			flex-direction: column;
+			width: 320px;
+
+			img {
+				width: 156px;
+				margin-bottom: 15px;
+			}
+
+			.title {
+				@include font-400;
+				color: #ffffff;
+				font-size: 16px;
+				margin-bottom: 45px;
+			}
+
+			div {
+				span {
+					@include font-400;
+					color: #ffffff;
+					font-size: 12px;
+				}
+
+				.input {
+					.email {
+						@include font-400;
+						box-sizing: border-box;
+						padding: 0px 55px 0px 20px;
+						font-size: 12px;
+						width: 263px;
+						height: 60px;
+
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+
+						border-radius: 36px;
+
+						background-color: #ededed;
+
+						&::placeholder {
+							color: #5c6370;
+							opacity: 0.6;
+						}
+					}
+					margin-top: 14px;
+				}
+
+				.input {
+					position: relative;
+				}
+
+				.icon {
+					position: absolute;
+					width: 39px;
+					top: 10px;
+					right: 65px;
+					cursor: pointer;
+				}
+			}
+		}
+
+		.menu,
+		.catigories {
+			display: flex;
+			flex-direction: column;
+			.title {
+				@include font-600;
+				color: #ffffff;
+				font-size: 20px;
+				margin-bottom: 25px;
+			}
+
+			nav {
+				display: flex;
+				flex-direction: column;
+
+				a {
+					@include font-400;
+					color: #ffffff;
+
+					&:not(:last-child) {
+						margin-bottom: 20px;
+					}
+				}
+			}
+		}
+
+		.price {
+			display: flex;
+			flex-direction: column;
+			.title {
+				@include font-600;
+				color: #ffffff;
+				font-size: 20px;
+				margin-bottom: 25px;
+			}
+
+			.button {
+				@include font-700;
+				display: flex;
+				align-items: center;
+
+				padding: 0px 14px 0px 50px;
+
+				width: 214px;
+				height: 60px;
+
+				display: flex;
+				align-items: center;
+				background: url('../../static/svg/download.svg') no-repeat top 23px
+					right 53px;
+				background-color: $color-yellow;
+				color: #ffffff;
+
+				border-radius: 79px;
+
+				margin-bottom: 20px;
+			}
+		}
+
+		.mess {
+			span {
+				@include font-400;
+				color: #ffffff;
+			}
+
+			div {
+				margin-top: 25px;
+
+				img {
+					&:not(:last-child) {
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+
+		.contacts {
+			display: flex;
+			flex-direction: column;
+
+			.title {
+				@include font-600;
+				font-size: 20px;
+				color: #ffffff;
+				margin-bottom: 25px;
+			}
+
+			.call {
+				display: flex;
+				flex-direction: column;
+
+				.number {
+					@include font-600;
+					font-size: 14px;
+					color: #ffffff;
+					margin-bottom: 5px;
+				}
+
+				.time {
+					@include font-300;
+					font-size: 12px;
+					color: #ffffff;
+					margin-bottom: 5px;
+				}
+
+				.getCall {
+					@include font-400;
+					font-size: 10px;
+					text-decoration: underline;
+					color: #ffffff;margin-bottom: 25px;
+				}
+			}
+
+			.contact {
+				display: flex;
+				flex-direction: column;
+
+				.email {
+					@include font-600;
+					color: #ffffff;
+				}
+
+				.subtitle {
+					@include font-300;
+					color: #ffffff;
+					font-size: 12px;
+				}
+			}
+
+			.cards {
+				margin-top: 25px;
+
+				img {
+					&:not(:last-child) {
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+}

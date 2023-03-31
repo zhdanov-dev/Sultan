@@ -1,0 +1,29 @@
+@import '../../variables.scss';
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	width: 1380px;
+
+	margin-top: 25px;
+
+	.filter {
+		@include font-400;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		padding: 18px;
+		text-align: center;
+		box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+		border-radius: 10px;
+		line-height: 17px;
+		cursor: pointer;
+
+		&:not(:last-child) {
+			margin-right: 10px;
+		}
+	}
+}

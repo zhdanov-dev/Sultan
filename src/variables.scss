@@ -1,0 +1,51 @@
+$color-black: #111111;
+$color-blue: #3F4E65;
+$color-yellow: #FFC85E;
+
+@mixin font-800 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 800;
+	font-size: 14px;
+	color: $color-black;
+}
+
+@mixin font-700 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	color: $color-black;
+}
+
+@mixin font-600 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	color: $color-black;
+}
+
+@mixin font-500 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	color: $color-black;
+}
+
+@mixin font-400 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	color: $color-black;
+}
+
+@mixin font-300 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	color: $color-black;
+}
