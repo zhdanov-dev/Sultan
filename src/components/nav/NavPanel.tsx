@@ -10,7 +10,7 @@ function NavPanel({currentCrumb}: NavPanelProps) {
 			<li className={stl.crumb}>Главная</li>
 			<li className={stl.crumb}>Косметика и гигиена</li>
 			{currentCrumb === '' ? null : (
-				<li className={stl.crumb}>{currentCrumb}</li>
+				<li data-testid='current-crumb' className={stl.crumb}>{currentCrumb}</li>
 			)}
 		</ul>
 	);

@@ -1,0 +1,149 @@
+@import '../../../variables.scss';
+
+.productBlock {
+	display: flex;
+	flex-direction: column;
+
+	.hhr {
+		height: 1px;
+		background: url('../../../static/svg/hhr.svg') no-repeat center;
+		margin-bottom: 50px;
+	}
+
+	.product {
+		display: flex;
+		align-items: center;
+
+		.logoBlock {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 300px;
+
+			.logo {
+				max-width: 300px;
+				max-height: 200px;
+			}
+		}
+
+		.content {
+			width: 480px;
+
+			.package {
+				display: flex;
+				width: 100%;
+
+				img {
+					opacity: 0.23;
+					margin-right: 8px;
+				}
+
+				.vol {
+					@include font-400;
+					font-size: 12px;
+					color: $color-blue;
+				}
+				margin-bottom: 10px;
+			}
+
+			.name {
+				@include font-700;
+				font-size: 30px;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 2; /* number of lines to show */
+				line-clamp: 2;
+				-webkit-box-orient: vertical;
+				margin-bottom: 10px;
+			}
+
+			.description {
+				@include font-300;
+				font-size: 12px;
+				color: $color-blue;
+			}
+
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		.counterBlock {
+			display: flex;
+			align-items: center;
+
+			.counter {
+				display: flex;
+				align-items: center;
+
+				.count {
+					@include font-500;
+					color: $color-blue;
+					margin-right: 17px;
+				}
+
+				.make {
+					@include font-300;
+					font-size: 12px;
+					color: $color-blue;
+
+					box-sizing: border-box;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					padding: 4px 14px;
+
+					width: 34px;
+					height: 23px;
+
+					background: linear-gradient(
+						90deg,
+						rgba(255, 198, 80, 0.3) 0%,
+						rgba(254, 202, 110, 0.3) 97.25%
+					);
+					border-radius: 1000px;
+
+					&:first-child {
+						margin-right: 17px;
+					}
+
+					cursor: pointer;
+				}
+			}
+
+			.vhr {
+				width: 1px;
+				height: 50px;
+				background: url('../../../static/svg/vhr.svg') no-repeat center;
+
+				&:not(:last-child) {
+					margin: 0px 45px 0px 45px;
+				}
+
+				margin-right: 45px;
+			}
+
+			.price {
+				display: flex;
+				justify-content: center;
+				@include font-700;
+				width: 120px;
+				font-size: 24px;
+			}
+
+			.delete {
+				width: 60px;
+				height: 60px;
+
+				background: url('../../../static/svg/delete.svg') no-repeat center;
+				background-color: $color-yellow;
+				color: #ffffff;
+
+				border-radius: 79px;
+
+				margin-left: 10px;
+			}
+		}
+
+		margin-bottom: 50px;
+	}
+}

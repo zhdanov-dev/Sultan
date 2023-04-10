@@ -1,16 +1,14 @@
 import { useMemo, useRef, useState } from 'react';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
+import CartProduct from '../../components/product/cart/CartProduct';
 import Subheader from '../../components/subheader/Subheader';
-import volume from '../../static/svg/volume.svg';
-import weigth from '../../static/svg/weigth.svg';
 import stl from './CartPage.module.scss';
 
 function ProductPage() {
 	const [countCart, setCountCart] = useState(0);
 	const [costCart, setCostCart] = useState(0);
 	const [alert, setAlert] = useState('');
-
 	const cart = useRef<ProductCart[]>([]);
 
 	useMemo(() => {
@@ -69,7 +67,7 @@ function ProductPage() {
 		cart.current = [];
 		changeCart();
 		setCountCart(0);
-		setAlert('Спасибо за заказ')
+		setAlert('Спасибо за заказ');
 	}
 
 	return (
@@ -78,75 +76,31 @@ function ProductPage() {
 			<hr className={stl.hr} />
 			<Header countCart={String(countCart)} costCart={String(costCart)} />
 			<hr className={stl.hr} />
-			<main className={stl.cart}>
+			<main data-testid='cart-page' className={stl.cart}>
 				<span className={stl.title}>Корзина</span>
 				{cart.current.map((product, key) => {
 					return (
-						<div className={stl.productBlock} key={key}>
-							<div className={stl.hhr}></div>
-							<div className={stl.product}>
-								<div className={stl.logoBlock}>
-									<img className={stl.logo} src={product.imgUrl} alt='' />
-								</div>
-
-								<div className={stl.content}>
-									<div className={stl.package}>
-										{product.typeSize === 'volume' ? (
-											<>
-												<img src={volume} alt='' />
-												<span className={stl.vol}>
-													{product.size}
-													{' мл'}
-												</span>
-											</>
-										) : (
-											<>
-												<img src={weigth} alt='' />
-												<span className={stl.vol}>
-													{product.size}
-													{' г'}
-												</span>
-											</>
-										)}
-									</div>
-									<span className={stl.name}>{product.name}</span>
-									<span className={stl.description}>{product.description}</span>
-								</div>
-								<div className={stl.counterBlock}>
-									<div className={stl.vhr}></div>
-									<div className={stl.counter}>
-										<span
-											onClick={() => decrementProduct(product.id)}
-											className={stl.make}
-										>
-											-
-										</span>
-										<span className={stl.count}>{product.count}</span>
-										<span
-											onClick={() => incrementProduct(product.id)}
-											className={stl.make}
-										>
-											+
-										</span>
-									</div>
-									<div className={stl.vhr}></div>
-									<span className={stl.price}>
-										{product.price * product.count}
-										{' ₸'}
-									</span>
-									<div className={stl.vhr}></div>
-									<button
-										onClick={() => deleteProduct(product.id)}
-										className={stl.delete}
-									></button>
-								</div>
-							</div>
-						</div>
+						<CartProduct
+							id={product.id}
+							imgUrl={product.imgUrl}
+							typeSize={product.typeSize}
+							size={product.size}
+							name={product.name}
+							count={product.count}
+							price={product.price}
+							description={product.description}
+							decrementProduct={decrementProduct}
+							incrementProduct={incrementProduct}
+							deleteProduct={deleteProduct}
+							key={key}
+						/>
 					);
 				})}
 				{alert ? (
 					<h1>{alert}</h1>
-				) : cart.current.length === 0 ? <h1>{'Корзина пуста'}</h1> : (
+				) : cart.current.length === 0 ? (
+					<h1>{'Корзина пуста'}</h1>
+				) : (
 					<>
 						<div className={stl.hhr}></div>
 						<div className={stl.order}>

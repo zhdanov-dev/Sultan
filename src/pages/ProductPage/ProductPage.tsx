@@ -6,6 +6,7 @@ import NavPanel from '../../components/nav/NavPanel';
 import Subheader from '../../components/subheader/Subheader';
 import volume from '../../static/svg/volume.svg';
 import weigth from '../../static/svg/weigth.svg';
+import { addToCart } from '../../util';
 import stl from './ProductPage.module.scss';
 
 function ProductPage() {
@@ -33,50 +34,26 @@ function ProductPage() {
 		}
 	}, []);
 
-	function addToCart(
-		id: number,
-		imgUrl: string,
-		name: string,
-		typeSize: string,
-		size: string,
-		code: number,
-		fabric: string,
-		brand: string,
-		price: number,
-		typeCare: string[],
-		description: string
-	) {
-		let flag = false;
-		cart.current.forEach(product => {
-			if (product.name === name) {
-				product.count += counter;
-				flag = true;
-			}
-		});
-		if (!flag) {
-			cart.current = [
-				...cart.current,
-				{
-					id: id,
-					imgUrl: imgUrl,
-					name: name,
-					typeSize: typeSize,
-					size: size,
-					code: code,
-					fabric: fabric,
-					brand: brand,
-					price: price,
-					typeCare: typeCare,
-					description: description,
-					count: counter,
-				},
-			];
-		}
+	function handleAddToCart() {
+		cart.current = addToCart(
+			location.state.id,
+			location.state.imgUrl,
+			location.state.name,
+			location.state.typeSize,
+			location.state.size,
+			location.state.code,
+			location.state.fabric,
+			location.state.brand,
+			location.state.price,
+			location.state.typeCare,
+			location.state.description,
+			counter,
+			cart.current
+		);
 		let sum = 0;
 		cart.current.forEach(product => {
 			sum += product.price * product.count;
 		});
-		localStorage.setItem('cart', JSON.stringify(cart.current));
 		setCostCart(sum);
 		setCountCart(countCart + counter);
 	}
@@ -88,7 +65,7 @@ function ProductPage() {
 			<Header countCart={String(countCart)} costCart={String(costCart)} />
 			<hr className={stl.hr} />
 			<NavPanel currentCrumb={location.state.name} />
-			<main className={stl.product}>
+			<main data-testid='product-block' className={stl.product}>
 				<img className={stl.logo} src={location.state.imgUrl} alt='' />
 				<div className={stl.description}>
 					<span className={stl.nal}>В наличии</span>
@@ -122,6 +99,7 @@ function ProductPage() {
 							</span>
 							<span className={stl.count}>{counter}</span>
 							<span
+							data-testid='increment-span'
 								onClick={() => {
 									setCounter(counter + 1);
 								}}
@@ -130,25 +108,7 @@ function ProductPage() {
 								+
 							</span>
 						</div>
-						<button
-							onClick={() => {
-								addToCart(
-									location.state.id,
-									location.state.imgUrl,
-									location.state.name,
-									location.state.typeSize,
-									location.state.size,
-									location.state.code,
-									location.state.fabric,
-									location.state.brand,
-									location.state.price,
-									location.state.typeCare,
-									location.state.description
-								);
-							}}
-						>
-							В КОРЗИНУ
-						</button>
+						<button data-testid='button-addtocart' onClick={handleAddToCart}>В КОРЗИНУ</button>
 					</div>
 					<div className={stl.shareBlock}>
 						<div className={stl.share}></div>

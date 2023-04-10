@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import '../../../variables.scss';
 
 .container {
 	box-sizing: border-box;
@@ -91,7 +91,7 @@
 
 				display: flex;
 				align-items: center;
-				background: url('../../static/svg/cart.svg') no-repeat top 8px right
+				background: url('../../../static/svg/cart.svg') no-repeat top 8px right
 					27px;
 				background-color: $color-yellow;
 				color: #ffffff;

@@ -16,7 +16,7 @@ function Header({ countCart, costCart }: HeaderProps) {
 		<header className={stl.container}>
 			<div className={stl.leftside}>
 				<img src={logo} alt='' />
-				<NavLink to={'/catalog'}>
+				<NavLink data-testid='catalog-link' to={'/catalog'}>
 					<button className={stl.button}>Каталог</button>
 				</NavLink>
 
@@ -37,7 +37,7 @@ function Header({ countCart, costCart }: HeaderProps) {
 				<img className={stl.dash} src={dash} alt='' />
 				<button className={stl.button}>Прайс-лист</button>
 				<img className={stl.dash} src={dash} alt='' />
-				<NavLink to={'/cart'}>
+				<NavLink data-testid='cart-link' to={'/cart'}>
 					<div className={stl.bag}>
 						<div className={stl.count}>
 							<img src={bag} alt='' />

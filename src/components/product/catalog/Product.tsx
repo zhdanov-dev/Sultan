@@ -1,6 +1,6 @@
 import stl from './Product.module.scss';
-import volume from '../../static/svg/volume.svg';
-import weigth from '../../static/svg/weigth.svg';
+import volume from '../../../static/svg/volume.svg';
+import weigth from '../../../static/svg/weigth.svg';
 import { NavLink } from 'react-router-dom';
 
 interface ProductProps {
@@ -68,6 +68,7 @@ function Product({
 			</div>
 			<div className={stl.content}>
 				<NavLink
+					data-testid='product-link'
 					to={{ pathname: '/product/' + code }}
 					state={{
 						imgUrl,
@@ -79,7 +80,7 @@ function Product({
 						brand,
 						price,
 						typeCare,
-						description
+						description,
 					}}
 				>
 					<span>
@@ -114,6 +115,7 @@ function Product({
 						{' ₸'}
 					</span>
 					<button
+					data-testid='button-addtocart'
 						onClick={() => {
 							addToCart(
 								id,

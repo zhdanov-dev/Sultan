@@ -8,7 +8,7 @@ function Subheader() {
 		<header className={stl.container}>
 			<div className={stl.leftside}>
 				<div className={stl.location}>
-					<img src={location} alt='' />
+					<img src={location} alt='location' />
 					<div className={stl.content}>
 						<span className={stl.content__main}>
 							г. Кокчетав, ул. Ж. Ташенова 129Б
@@ -16,9 +16,9 @@ function Subheader() {
 						<span className={stl.content__sub}>(Рынок Восточный)</span>
 					</div>
 				</div>
-				<img className={stl.dash} src={dash} alt='' />
+				<img className={stl.dash} src={dash} alt='dash' />
 				<div className={stl.mail}>
-					<img src={mail} alt='' />
+					<img src={mail} alt='email' />
 					<div className={stl.content}>
 						<span className={stl.content__main}>opt.sultan@mail.ru</span>
 						<span className={stl.content__sub}>На связи в любое время</span>

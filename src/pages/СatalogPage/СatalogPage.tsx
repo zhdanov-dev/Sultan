@@ -3,103 +3,73 @@ import LeftFilter from '../../components/filter/LeftFilter';
 import MainFilter from '../../components/filter/MainFilter';
 import Header from '../../components/header/Header';
 import NavPanel from '../../components/nav/NavPanel';
-import Product from '../../components/product/Product';
+import Product from '../../components/product/catalog/Product';
 import SortPanel from '../../components/sort/SortPanel';
 import Subheader from '../../components/subheader/Subheader';
-
 import productsJSON from '../../products.json';
-import { getFabric, minMax } from '../../util';
-import { useMemo, useRef, useState } from 'react';
+import { SyntheticEvent, useMemo, useRef, useState } from 'react';
 import Footer from '../../components/footer/Footer';
-
 import Pagination from '../../components/pagination/Pagination';
+import {
+	getChangeCare,
+	getFabric,
+	getFiltredProducs,
+	getSortingProducts,
+	minMax,
+} from '../../util';
 
 function CatalogPage() {
 	const [filtredProducts, setFiltredProducts] = useState<Product[]>(
 		productsJSON.products
 	);
-
-	let PageSize = 12;
-
+	const cart = useRef<ProductCart[]>([]);
+	const [countCart, setCountCart] = useState(0);
+	const [costCart, setCostCart] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const currentPagesData = useMemo(() => {
-		const firstPageIndex = (currentPage - 1) * PageSize;
-		const lastPageIndex = firstPageIndex + PageSize;
-		console.log('asdas')
+		const firstPageIndex = (currentPage - 1) * 12;
+		const lastPageIndex = firstPageIndex + 12;
 		return filtredProducts.slice(firstPageIndex, lastPageIndex);
 	}, [currentPage, filtredProducts]);
 
-	const cart = useRef<ProductCart[]>([]);
+	useMemo(() => {
+		const carts: ProductCart[] = JSON.parse(
+			localStorage.getItem('cart') || '{}'
+		);
+		if (Object.entries(carts).length !== 0) {
+			cart.current = carts;
+			let sum = 0;
+			let count = 0;
+			carts.forEach(product => {
+				sum += product.price * product.count;
+				count += product.count;
+			});
+			setCostCart(sum);
+			setCountCart(count);
+		}
+	}, []);
 
-	const [countCart, setCountCart] = useState(0);
-	const [costCart, setCostCart] = useState(0);
-
-	function getFiltredProducts(
+	function filtredProductsHandler(
 		minPrice: number,
 		maxPrice: number,
 		checkboxes: string[]
 	) {
-		const products = productsJSON.products;
-		let filtredProducts: Product[] = [];
-		for (let i = 0; i < products.length; i++) {
-			if (
-				minPrice <= products[i].price &&
-				products[i].price <= maxPrice &&
-				checkboxes.includes(products[i].fabric)
-			)
-				filtredProducts.push(products[i]);
-		}
-		setFiltredProducts(filtredProducts);
+		setFiltredProducts(
+			getFiltredProducs(productsJSON.products, minPrice, maxPrice, checkboxes)
+		);
 	}
 
-	function getAllProducts() {
+	function allProductsHandler() {
 		setFiltredProducts(productsJSON.products);
 	}
 
-	function changeCare(e: any) {
-		let products = productsJSON.products;
-		const adminProducts = JSON.parse(
-			localStorage.getItem('adminProducts') || '[]'
-		);
-		if (adminProducts.length !== 0) {
-			products = [...adminProducts];
-		}
-		let localProducts: Product[] = [];
-		for (let i = 0; i < products.length; i++) {
-			products[i].typeCare.forEach(type => {
-				if (
-					type.toLocaleLowerCase() === e.target.textContent.toLocaleLowerCase()
-				)
-					localProducts.push(products[i]);
-			});
-		}
-		setFiltredProducts(localProducts);
+	function careHandler(e: SyntheticEvent) {
+		setFiltredProducts(getChangeCare(e, productsJSON.products));
 	}
 
-	function changeSort(e: any) {
-		let sorting = filtredProducts;
-		if (e.target.value === 'a-z') {
-			filtredProducts.sort((a, b) => {
-				return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-			});
-		}
-		if (e.target.value === 'z-a') {
-			filtredProducts.sort((a, b) => {
-				return a.name > b.name ? -1 : a.name < b.name ? 1 : 0;
-			});
-		}
-		if (e.target.value === 'min') {
-			filtredProducts.sort((a, b) => {
-				return a.price - b.price;
-			});
-		}
-		if (e.target.value === 'max') {
-			filtredProducts.sort((a, b) => {
-				return b.price - a.price;
-			});
-		}
-		setFiltredProducts([...sorting]);
+	function sortHandler(e: SyntheticEvent) {
+		setFiltredProducts([...getSortingProducts(e, filtredProducts)]);
 	}
 
 	function addToCart(
@@ -149,29 +119,6 @@ function CatalogPage() {
 		setCountCart(countCart + 1);
 	}
 
-	useMemo(() => {
-		const adminProducts = JSON.parse(
-			localStorage.getItem('adminProducts') || '[]'
-		);
-		if (adminProducts.length !== 0) {
-			setFiltredProducts([...adminProducts]);
-		}
-		const carts: ProductCart[] = JSON.parse(
-			localStorage.getItem('cart') || '{}'
-		);
-		if (Object.entries(carts).length !== 0) {
-			cart.current = carts;
-			let sum = 0;
-			let count = 0;
-			carts.forEach(product => {
-				sum += product.price * product.count;
-				count += product.count;
-			});
-			setCostCart(sum);
-			setCountCart(count);
-		}
-	}, []);
-
 	return (
 		<div className={stl.container}>
 			<Subheader />
@@ -182,16 +129,16 @@ function CatalogPage() {
 			<main className={stl.main}>
 				<div className={stl.head}>
 					<h1>Косметика и гигиена</h1>
-					<SortPanel changeSort={changeSort} />
+					<SortPanel changeSort={sortHandler} />
 				</div>
-				<MainFilter changeCare={changeCare} />
+				<MainFilter changeCare={careHandler} />
 				<div className={stl.content}>
 					<LeftFilter
 						range={minMax(filtredProducts)}
 						fabric={getFabric(filtredProducts)}
-						getFiltredProducts={getFiltredProducts}
-						getAllProducts={getAllProducts}
-						changeCare={changeCare}
+						getFiltredProducts={filtredProductsHandler}
+						getAllProducts={allProductsHandler}
+						changeCare={careHandler}
 					/>
 					<section className={stl.products}>
 						{currentPagesData.map((product, key: number) => {
@@ -218,7 +165,7 @@ function CatalogPage() {
 				<div className={stl.pages}>
 					<Pagination
 						currentPage={currentPage}
-						totalCount={filtredProducts.length}
+						totalCount={productsJSON.products.length}
 						pageSize={12}
 						onPageChange={(page: any) => setCurrentPage(page)}
 					/>

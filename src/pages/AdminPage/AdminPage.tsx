@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import AdminProduct from '../../components/product/admin/AdminProduct';
 import stl from './AdminPage.module.scss';
 
 const CARE = [
@@ -92,7 +93,7 @@ function AdminPage() {
 
 	function deleteProduct(id: number) {
 		for (let i = 0; i < products.current.length; i++) {
-			if (products.current[i].id === id) products.current.splice(i, 1)
+			if (products.current[i].id === id) products.current.splice(i, 1);
 		}
 		localStorage.setItem('adminProducts', JSON.stringify(products.current));
 		setCurrentProducts([...products.current]);
@@ -257,13 +258,12 @@ function AdminPage() {
 					)}
 				</div>
 				<div className={stl.buttons}>
-					<NavLink to={'/catalog'}><button
-						type='submit'
-						className={stl.form__button}
-					>
-						Назад к каталогу
-					</button></NavLink>
-					
+					<NavLink to={'/catalog'}>
+						<button type='submit' className={stl.form__button}>
+							Назад к каталогу
+						</button>
+					</NavLink>
+
 					<button
 						onClick={addProduct}
 						type='submit'
@@ -275,79 +275,20 @@ function AdminPage() {
 			</form>
 			<div className={stl.products}>
 				{currentProducts.map((product, key) => (
-					<div className={stl.product} key={key}>
-						<div
-							onClick={() => deleteProduct(product.id)}
-							className={stl.delete}
-						>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								height='24'
-								viewBox='0 96 960 960'
-								width='24'
-								fill='currentColor'
-							>
-								<path d='M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z' />
-							</svg>
-						</div>
-
-						<img className={stl.logo} src={product.imgUrl} alt='' />
-						<div className={stl.content}>
-							<div className={stl.spec}>
-								<div>
-									<span className={stl.key}>Имя:</span>
-									<span>{product.name}</span>
-								</div>
-								<div>
-									<span className={stl.key}>Штрихкод:</span>
-									<span>{product.code}</span>
-								</div>
-								<div>
-									<span className={stl.key}>Производитель:</span>
-									<span>{product.fabric}</span>
-								</div>
-								<div>
-									<span className={stl.key}>Бренд:</span>
-									<span>{product.brand}</span>
-								</div>
-								<div>
-									<span className={stl.key}>Тип ухода:</span>
-									<span>
-										{product.typeCare.length === 1
-											? product.typeCare
-											: product.typeCare.join(', ')}
-									</span>
-								</div>
-								<div className={stl.package}>
-									{product.typeSize === 'volume' ? (
-										<>
-											<span className={stl.key}>Объем:</span>
-											<span className={stl.vol}>
-												{product.size}
-												{' мл'}
-											</span>
-										</>
-									) : (
-										<>
-											<span className={stl.key}>Вес:</span>
-											<span className={stl.vol}>
-												{product.size}
-												{' г'}
-											</span>
-										</>
-									)}
-								</div>
-								<div>
-									<span className={stl.key}>Описание:</span>
-									<span>{product.description}</span>
-								</div>
-								<div>
-									<span className={stl.key}>Цена:</span>
-									<span>{product.price}</span>
-								</div>
-							</div>
-						</div>
-					</div>
+					<AdminProduct
+						id={product.id}
+						imgUrl={product.imgUrl}
+						typeSize={product.typeSize}
+						size={product.size}
+						name={product.name}
+						code={product.code}
+						fabric={product.fabric}
+						brand={product.brand}
+						typeCare={product.typeCare}
+						price={product.price}
+						description={product.description}
+						deleteProduct={deleteProduct}
+					/>
 				))}
 			</div>
 		</div>
